@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+  letsencrypt-nginx-container:
+    container_name: 'le-nginx-container'
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etx/nginx/conf.d/default.conf
+      - ./site:/usr/share/nginx/html
+    networks:
+      - docker-network
+
+networks:
+  docker-network:
+    driver: bridge
+
